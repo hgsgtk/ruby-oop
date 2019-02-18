@@ -9,6 +9,6 @@ class Wheel
   # 受信メッセージ diameter に応答する
   # Gear から依存されている
   def diameter
-    rim + (tire * 2)
+    rim + (tire*2)
   end
 end

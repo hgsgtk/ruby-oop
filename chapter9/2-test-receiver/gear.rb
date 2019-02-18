@@ -7,7 +7,7 @@ class Gear
     @chainring = args[:chainring]
     @cog = args[:cog]
     @rim = args[:rim]
-    @tire = args[:args]
+    @tire = args[:tire]
   end
 
   # 受信メッセージ gear_inches に応答する
