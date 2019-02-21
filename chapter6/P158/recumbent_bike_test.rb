@@ -13,4 +13,22 @@ class RecumbentBikeTest < Minitest::Unit::TestCase
   def test_initialize
     bent = RecumbentBike.new(size: 'S')
   end
+
+  # superを送っていないためにエラーになる
+  # このエラーの原因は対象クラスから遠いところにある
+  # デバックの難しさ
+  #
+  # Minitest::Assertion: --- expected
+  # +++ actual
+  # @@ -1 +1 @@
+  # -{:tire_size=>"28", :chain=>"9-speed", :flag=>"tail and orage"}
+  # +{:tire_size=>nil, :chain=>nil, :flag=>"tail and orange"}
+  def test_spares
+    bent = RecumbentBike.new(flag: 'tail and orange')
+    assert_equal({
+        :tire_size => '28',
+        :chain => '9-speed',
+        :flag => 'tail and orage'
+                 }, bent.spares)
+  end
 end
