@@ -17,4 +17,9 @@ class RoadBike < Bicycle
         tape_color: tape_color
     }
   end
+
+  # サブクラスの初期値
+  def default_tire_size
+    '23'
+  end
 end

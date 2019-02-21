@@ -8,5 +8,9 @@ class RoadBikeTest < Minitest::Unit::TestCase
                             tape_color: 'red'
     )
     assert_equal('M', road_bike.size)
+
+    # 雑にここに入れた
+    assert_equal('23', road_bike.tire_size)
+    assert_equal('10-speed', road_bike.chain)
   end
 end

@@ -12,4 +12,9 @@ class MountainBike < Bicycle
   def spares
     super.merge(rear_shock: rear_shock)
   end
+
+  # サブクラスの初期値
+  def default_tire_size
+    '2.1'
+  end
 end
