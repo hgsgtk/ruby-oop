@@ -7,10 +7,8 @@ class RoadBike < Bicycle
     @tape_color = args[:tape_color]
   end
 
-  # デフォルトの文字列を直接自身の内部に埋め込むという罪を犯している
-  # しかし、そこそこ妥当なコード
-  def spares
-    super.merge({tape_color: tape_color})
+  def local_spares
+    {tape_color: tape_color}
   end
 
   # サブクラスの初期値

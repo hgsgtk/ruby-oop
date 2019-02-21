@@ -3,12 +3,12 @@ require_relative './bicycle'
 class RecumbentBike < Bicycle
   attr_reader :flag
 
-  def initialize(args)
-    @flag = args[:flag] # 'super'を送信するのを忘れた
+  def post_initialize(args)
+    @flag = args[:flag]
   end
 
-  def spares
-    super.merge({flag: flag})
+  def local_spares
+    {flag: flag}
   end
 
   def default_chain
