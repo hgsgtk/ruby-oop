@@ -14,6 +14,13 @@ class Bicycle
     @tire_size = args[:tire_size] || default_tire_size
   end
 
+  def spares
+    {
+        tire_size: tire_size,
+        chain: chain
+    }
+  end
+
   # 共通の初期値
   def default_chain
     '10-speed'

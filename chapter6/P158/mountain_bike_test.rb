@@ -22,6 +22,10 @@ class MountainBikeTest < Minitest::Unit::TestCase
         front_shock: 'Manitou',
         rear_shock: 'Fox'
     )
-    mountain_bike.spares
+    assert_equal({
+                     tire_size: '2.1',
+                     chain: '10-speed',
+                     rear_shock: 'Fox'
+                 }, mountain_bike.spares)
   end
 end
