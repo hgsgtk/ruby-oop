@@ -6,6 +6,9 @@ require_relative './recumbent_bike'
 #
 # NotImplementedError 実装後は明示的になった
 # Minitest::UnexpectedError: NotImplementedError: NotImplementedError
+#
+# 追加のメッセージを込めた
+# Minitest::UnexpectedError: NotImplementedError: This RecumbentBike cannot respond to:
 class RecumbentBikeTest < Minitest::Unit::TestCase
   def test_initialize
     bent = RecumbentBike.new(size: 'S')

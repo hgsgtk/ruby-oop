@@ -21,6 +21,7 @@ class Bicycle
 
   # 必ず用意しないといけないということを明示する
   def default_tire_size
-    raise NotImplementedError
+    raise NotImplementedError,
+          "This #{self.class} cannot respond to:"
   end
 end
