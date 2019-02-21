@@ -18,4 +18,9 @@ class Bicycle
   def default_chain
     '10-speed'
   end
+
+  # 必ず用意しないといけないということを明示する
+  def default_tire_size
+    raise NotImplementedError
+  end
 end
