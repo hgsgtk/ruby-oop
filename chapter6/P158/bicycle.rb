@@ -12,6 +12,12 @@ class Bicycle
     @size = args[:size] # RoadBikeから昇格
     @chain = args[:chain] || default_chain
     @tire_size = args[:tire_size] || default_tire_size
+
+    post_initialize(args)
+  end
+
+  def post_initialize(args)
+    nil
   end
 
   def spares

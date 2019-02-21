@@ -3,9 +3,8 @@ require_relative './bicycle'
 class RoadBike < Bicycle
   attr_reader :size, :tape_color
 
-  def initialize(args)
+  def post_initialize(args)
     @tape_color = args[:tape_color]
-    super(args) # 呼ぶ
   end
 
   # デフォルトの文字列を直接自身の内部に埋め込むという罪を犯している
