@@ -5,6 +5,9 @@ require "minitest/autorun"
 class GearTest < Minitest::Unit::TestCase
 
   # Wheel のインスタンスをテスト中に注入している
+  #
+  # 依然テストは通っている、夢の世界に生きるテストになった
+  # 1 tests, 1 assertions, 0 failures, 0 errors, 0 skips
   def test_calculate_gear_inches
     gear = Gear.new(
                    chainring: 52,

@@ -8,7 +8,9 @@ class Wheel
 
   # 受信メッセージ diameter に応答する
   # Gear から依存されている
-  def diameter
+  #
+  # 再びパブリックインターフェースが変わった
+  def width
     rim + (tire*2)
   end
 end
