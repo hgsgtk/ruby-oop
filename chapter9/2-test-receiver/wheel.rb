@@ -6,8 +6,9 @@ class Wheel
     @tire = tire
   end
 
-  # 以前、diameter だったものが、widthに変わった
-  def width
+  # 受信メッセージ diameter に応答する
+  # Gear から依存されている
+  def diameter
     rim + (tire*2)
   end
 end
