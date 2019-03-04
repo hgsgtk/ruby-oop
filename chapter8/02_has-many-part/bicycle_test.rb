@@ -28,6 +28,9 @@ class BicycleTest < Minitest::Unit::TestCase
         parts: Parts.new([chain, road_tire, tape]))
 
     got = road_bike.spares
+    # spares は Part objectの配列を返すようになった
+    # しかし、コンポジションを学ぶ上で重要なのは、Partのロールを担うオブジェクトであるという点
+    # そのため、このように返ってくるものが特定のインスタンスであることを確認しているテストは不適切と言えるかもしれない
     got.each do |part|
       assert_instance_of(Part, part)
       puts part
