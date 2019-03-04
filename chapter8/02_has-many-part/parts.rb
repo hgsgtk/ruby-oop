@@ -1,18 +1,10 @@
-# 抽象クラス
-# RoadBikeParts, MountainBikeParts という２つの抽象クラスを持つ
 # 単一の部品を表すPartオブジェクトに依存する
-class Parts
+# Arrayである必要があるのかもしれないことを考慮に入れ、Arrayのサブクラスとした
+# 完璧なオブジェクト指向設計言語では正しい解決法だが・・・（詳しくはPartsTestにて）
+class Parts < Array
   attr_reader :parts
-
-  def initialize(parts)
-    @parts = parts
-  end
 
   def spares
     parts.select {|part| part.needs_spare}
-  end
-
-  def size
-    parts.size
   end
 end
