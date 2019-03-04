@@ -28,6 +28,7 @@ class BicycleTest < Minitest::Unit::TestCase
         parts: Parts.new([chain, road_tire, tape]))
 
     got = road_bike.spares
+    assert_equal(3, got.size)
     # spares は Part objectの配列を返すようになった
     # しかし、コンポジションを学ぶ上で重要なのは、Partのロールを担うオブジェクトであるという点
     # そのため、このように返ってくるものが特定のインスタンスであることを確認しているテストは不適切と言えるかもしれない
@@ -50,6 +51,23 @@ class BicycleTest < Minitest::Unit::TestCase
     assert_equal('L', mountain_bike.size)
   end
 
+  # partsも配列が返ってくるかと思いきやこれはインスタンスが返ってくるためエラーとなってしまった
+  # Minitest::UnexpectedError: NoMethodError: undefined method `size' for #<Parts:0x00007ff5560be890>
+  # like `step on rake`
+  # See also https://www.youtube.com/watch?v=2WZLJpMOxS4
+  def test_mountain_bike_parts_size
+    chain = Part.new(name: 'chain', description: '10-speed')
+    mountain_tire = Part.new(name: 'tire_size', description: '2.1')
+    rear_shock = Part.new(name: 'rear_shock', description: 'Fox')
+    front_shock = Part.new(name: 'front_shock', description: 'Manitou', needs_spare: false)
+
+    mountain_bike = Bicycle.new(
+        size: 'L',
+        parts: Parts.new([chain, mountain_tire, front_shock, rear_shock])
+    )
+    assert_equal(3, mountain_bike.parts.size)
+  end
+
   def test_mountain_bike_spares
     chain = Part.new(name: 'chain', description: '10-speed')
     mountain_tire = Part.new(name: 'tire_size', description: '2.1')
@@ -62,6 +80,7 @@ class BicycleTest < Minitest::Unit::TestCase
     )
 
     got = mountain_bike.spares
+    assert_equal(3, got.size)
     got.each do |part|
       assert_instance_of(Part, part)
       puts part
