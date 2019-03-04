@@ -55,6 +55,9 @@ class BicycleTest < Minitest::Unit::TestCase
   # Minitest::UnexpectedError: NoMethodError: undefined method `size' for #<Parts:0x00007ff5560be890>
   # like `step on rake`
   # See also https://www.youtube.com/watch?v=2WZLJpMOxS4
+  #
+  # 取り急ぎPartsクラスにsizeを追加したため上記エラーは解消されたが、
+  # 同様の配列機能はどうせ欲しくなることが予想される
   def test_mountain_bike_parts_size
     chain = Part.new(name: 'chain', description: '10-speed')
     mountain_tire = Part.new(name: 'tire_size', description: '2.1')
@@ -65,7 +68,7 @@ class BicycleTest < Minitest::Unit::TestCase
         size: 'L',
         parts: Parts.new([chain, mountain_tire, front_shock, rear_shock])
     )
-    assert_equal(3, mountain_bike.parts.size)
+    assert_equal(4, mountain_bike.parts.size)
   end
 
   def test_mountain_bike_spares
