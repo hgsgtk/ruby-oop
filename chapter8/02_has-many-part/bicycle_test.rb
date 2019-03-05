@@ -4,7 +4,6 @@ require_relative './part'
 require_relative './parts'
 
 # リファクタリングの結果を確認する
-# 本テストケースが通るという事実により、Bicycle特有のコードが少なかったことが判明した
 class BicycleTest < Minitest::Unit::TestCase
   def test_road_bike_size
     chain = Part.new(name: 'chain', description: '10-speed')
@@ -51,13 +50,7 @@ class BicycleTest < Minitest::Unit::TestCase
     assert_equal('L', mountain_bike.size)
   end
 
-  # partsも配列が返ってくるかと思いきやこれはインスタンスが返ってくるためエラーとなってしまった
-  # Minitest::UnexpectedError: NoMethodError: undefined method `size' for #<Parts:0x00007ff5560be890>
-  # like `step on rake`
-  # See also https://www.youtube.com/watch?v=2WZLJpMOxS4
-  #
-  # 取り急ぎPartsクラスにsizeを追加したため上記エラーは解消されたが、
-  # 同様の配列機能はどうせ欲しくなることが予想される
+  # Enumerable module 実装によってpartsがsizeに応答できる
   def test_mountain_bike_parts_size
     chain = Part.new(name: 'chain', description: '10-speed')
     mountain_tire = Part.new(name: 'tire_size', description: '2.1')

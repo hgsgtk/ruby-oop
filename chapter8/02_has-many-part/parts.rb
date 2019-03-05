@@ -1,10 +1,17 @@
-# 単一の部品を表すPartオブジェクトに依存する
-# Arrayである必要があるのかもしれないことを考慮に入れ、Arrayのサブクラスとした
-# 完璧なオブジェクト指向設計言語では正しい解決法だが・・・（詳しくはPartsTestにて）
-class Parts < Array
-  attr_reader :parts
+require 'forwardable'
+
+class Parts
+  # https://docs.ruby-lang.org/ja/latest/class/Forwardable.html
+  extend Forwardable
+  def_delegators :@parts, :size, :each
+  # https://docs.ruby-lang.org/ja/latest/class/Enumerable.html
+  include Enumerable
+
+  def initialize(parts)
+    @parts = parts
+  end
 
   def spares
-    parts.select {|part| part.needs_spare}
+    select {|part| part.needs_spare}
   end
 end

@@ -11,8 +11,8 @@ class PartsTest < Minitest::Unit::TestCase
     road_bike_parts = Parts.new([chain, road_tire, tape])
   end
 
-  # PartsはArrayのすべての振る舞いを継承してる
-  # Arrayのふるまいの一つ + メソッドを検証する
+  # Enumerable moduleをincludeした
+  # + messageは理解しないため例外が発生する
   def test_combo_parts
     chain = Part.new(name: 'chain', description: '10-speed')
     road_tire = Part.new(name: 'tire_size', description: '23')
@@ -24,14 +24,7 @@ class PartsTest < Minitest::Unit::TestCase
     road_bike_parts = Parts.new([chain, road_tire, tape])
     mountain_bike_parts = Parts.new([chain, mountain_tire, rear_shock, front_shock])
 
+    # Minitest::UnexpectedError: NoMethodError: undefined method `+' for #<Parts:0x007fdef593a4c8>
     combo_parts = road_bike_parts + mountain_bike_parts
-    assert_equal(7, combo_parts.size)
-
-    # Failed by Minitest::UnexpectedError: NoMethodError: undefined method `spares' for #<Array:0x00007fe00a0e1ec8>
-    # combo_parts.spares
-
-    assert_instance_of(Parts, road_bike_parts) # passed!
-    assert_instance_of(Parts, mountain_bike_parts)  # passed!
-    assert_instance_of(Parts, combo_parts) # failed! to be an instance of Parts, not Array.
   end
 end
