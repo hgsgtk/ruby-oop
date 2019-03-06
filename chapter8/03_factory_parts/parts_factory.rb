@@ -3,9 +3,14 @@ require_relative './parts'
 
 # Partsオブジェクトを生成することを唯一の仕事とする
 module PartsFactory
+  # class method
+  # moduleから直接呼び出すことができる
+  # See also https://qiita.com/shiopon01/items/fd6803f792398c5219cd#%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89
   def self.build(config, part_class = Part, parts_class = Parts)
 
     parts_class.new(
+        # https://ref.xaio.jp/ruby/classes/array/collect
+        # collect: 要素の数だけ繰り返し処理、ブロックの戻り値を集めた配列を返す
         config.collect { |part_config|
           part_class.new(
               name: part_config[0],
