@@ -1,12 +1,32 @@
 require_relative './wheel'
 
 class Gear
-  attr_reader :chainring, :cog, :wheel
+  attr_reader :chainring, :cog, :wheel, :observer
 
   def initialize(args)
     @chainring = args[:chainring]
     @cog = args[:cog]
     @wheel = args[:wheel]
+    @observer = args[:observer]
+  end
+
+  def set_cog(new_cog)
+    @cog = new_cog
+    changed
+  end
+
+  def set_chainring(new_chainring)
+    @chainring = new_chainring
+    changed
+  end
+
+  # Gearに追加新しい責任
+  # コグ・チェーンリングが変わったとき必ずobserverへ通知
+  # アプリケーションが正しくあるためには、Gearがobserverにchangedを送る必要がある
+  # メッセージが送られたことをテストで保証したい
+  # -> テストに続く
+  def changed
+    observer.changed(chainring, cog)
   end
 
   # 受信メッセージ gear_inches に応答する
