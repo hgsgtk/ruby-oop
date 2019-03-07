@@ -1,22 +1,32 @@
-class Gear
-  attr_reader :wheel
+require_relative './wheel'
 
-  def initialize(wheel)
-    @wheel = wheel
+class Gear
+  attr_reader :chainring, :cog, :wheel
+
+  def initialize(args)
+    @chainring = args[:chainring]
+    @cog = args[:cog]
+    @wheel = args[:wheel]
   end
 
+  # 受信メッセージ gear_inches に応答する
   def gear_inches
-    # Wheelに送るdiameterメッセージはテストするべき？
-    # gear_inches以外にdiameterにメッセージが送られたことを気にするメソッドはない
-    # diameterは副作用がない、ただdiameterを教えてくれるだけ
+    # wheel変数内にあるオブジェクトが diameter に応答する
+    # Diameterizable ロールを担うことになった
+
+    # Gearを作る際には Diameterizable を注入する必要が出てきた
+    # しかし、Wheelは diameter に応答するというこのロールに答える唯一のクラス
+    # アプリケーションとして動かす際には毎回Wheelインスタンスを注入する必要がある
     #
-    # diameterを送ることの影響はGear内部に隠されている
-    # アプリケーション全体としてこのメッセージが送られる必要はない、テストでは気にしない
-    #
-    # gear_inchesはdiameterの戻り値に依存
-    # しかし、diameterの正しさを証明するテストは、Wheelに属するもの
-    # Gearでテストするのは重複・冗長・メンテナンスコストを上げる
-    # Gear.gear_inchesがいつも適切な値を返すことをテストすればOK
+    # 更に、Wheelを直接注入するか、Diameterizableを注入することは、プログラマの考えが大きく違う
+    # クラスに縛られない想像力をDiameterizableは可能にしている
+    # 注入するオブジェクトがロールのインスタンスであると考える -> Diameterizable についてより多くの選択肢が考えられる
     ratio * wheel.diameter
   end
+
+  # 受信メッセージ ratio に応答する
+  def ratio
+    chainring / cog.to_f
+  end
+
 end
