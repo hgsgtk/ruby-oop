@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require_relative './mechanic'
+require_relative './chanic'
 require_relative './preparer_interface_test'
 
 class MechanicTest < Minitest::Unit::TestCase

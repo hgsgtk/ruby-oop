@@ -1,12 +1,12 @@
 require 'minitest/autorun'
-require_relative './driver'
+require_relative './ip_coordinator'
 require_relative './preparer_interface_test'
 
-class DriverTest < MiniTest::Unit::TestCase
+class TripCoordinatorTest < MiniTest::Unit::TestCase
   # モジュールをIncludeする
   include PreparerInterfaceTest
 
   def setup
-    @driver = @object = Driver.new
+    @trip_coordinator = @object = TripCoordinator.new
   end
 end

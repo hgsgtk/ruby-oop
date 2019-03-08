@@ -1,4 +1,4 @@
-require_relative './mechanic'
+require_relative './chanic'
 require_relative './trip_coordinator'
 
 class Trip
