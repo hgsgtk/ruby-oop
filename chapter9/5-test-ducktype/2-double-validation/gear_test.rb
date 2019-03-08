@@ -8,6 +8,9 @@ class GearTest < Minitest::Unit::TestCase
   #
   # 依然テストは通っている、夢の世界に生きるテストになった
   # 1 tests, 1 assertions, 0 failures, 0 errors, 0 skips
+  #
+  # 夢から醒めた
+  # Minitest::UnexpectedError: NoMethodError: undefined method `diameter' for #<DiameterDouble:0x007fe4e38baba8>
   def test_calculate_gear_inches
     gear = Gear.new(
                    chainring: 52,
