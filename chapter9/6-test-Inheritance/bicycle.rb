@@ -11,6 +11,7 @@ class Bicycle
   def initialize(args={})
     @size = args[:size] # RoadBikeから昇格
     @chain = args[:chain] || default_chain
+    # initializeでtire_sizeを受け取る or default_tire_sizeメッセージの送信によって取得
     @tire_size = args[:tire_size] || default_tire_size
 
     post_initialize(args)
